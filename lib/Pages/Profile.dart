@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../Pages/profile_settings.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -67,8 +68,52 @@ class Profile extends StatelessWidget {
                 height: 20,
               ),
               Divider(
-                color: Colors.red,
-                height: 10,
+                height: 5,
+                color: Colors.white,
+                thickness: 1.5,
+              ),
+              SizedBox(
+                height: 22,
+              ),
+              ProfileSetting(
+                iconName: Icon(Icons.settings),
+                colorsType: Colors.white,
+                textName: "Setting",
+              ),
+              SizedBox(
+                height: 22,
+              ),
+              ProfileSetting(
+                iconName: Icon(Icons.share),
+                colorsType: Colors.white,
+                textName: "invite-freinds",
+              ),
+              SizedBox(
+                height: 22,
+              ),
+              ProfileSetting(
+                iconName: Icon(Icons.help_center_outlined),
+                colorsType: Colors.white,
+                textName: "Help",
+              ),
+              SizedBox(
+                height: 22,
+              ),
+              Divider(
+                height: 5,
+                color: Colors.white,
+                thickness: 1.5,
+              ),
+              SizedBox(
+                height: 35,
+              ),
+              ProfileSetting(
+                iconName: Icon(Icons.logout_outlined),
+                colorsType: Colors.white,
+                textName: "Logout",
+              ),
+              SizedBox(
+                height: 20,
               ),
             ],
           ),
