@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class NewAssCom extends StatelessWidget {
-  final imagePath;
-  final String textName;
-  NewAssCom({
-    required this.imagePath,
-    required this.textName
-  });
+class NewAssemplyCompelete extends StatelessWidget {
+  final String imagePath;
+
+  NewAssemplyCompelete({required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +22,7 @@ class NewAssCom extends StatelessWidget {
             height: 10,
           ),
           Text(
-            textName,
+            "Complete",
             style: GoogleFonts.rosario(
               fontSize: 25,
             ),
