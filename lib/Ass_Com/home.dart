@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:subac_app/Pages/compelete_task.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 import '../Dashboard/new_Ass_Com.dart';
-import 'new_assemblu.dart';
+import '../Pages/new_assemblu.dart';
 
 class HomeWidget extends StatelessWidget {
   const HomeWidget({super.key});
@@ -20,17 +21,20 @@ class HomeWidget extends StatelessWidget {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => NewAssembly()));
             },
-            child: NewAssCom(
-              imagePath: "images/kitab.png",
-              textName: "New Assembly",
+            child: NewAssemplyCompelete(imagePath: "images/kitab.png"
             ),
           ),
           SizedBox(
             height: 20,
           ),
-          NewAssCom(
-            imagePath: "images/comp.png",
-            textName: "Complete",
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CompeleteTask()));
+            },
+            child: NewAssemplyCompelete(
+              imagePath: "images/comp.png",
+            ),
           ),
           SizedBox(
             height: 20,
