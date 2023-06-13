@@ -4,10 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class NewAssCom extends StatelessWidget {
   final imagePath;
   final String textName;
-  NewAssCom({
-    required this.imagePath,
-    required this.textName
-  });
+  NewAssCom({required this.imagePath, required this.textName});
 
   @override
   Widget build(BuildContext context) {
