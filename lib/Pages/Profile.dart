@@ -16,7 +16,7 @@ class Profile extends StatelessWidget {
           width: 40,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: Colors.grey.withOpacity(0.5),
+            color: Colors.grey.withOpacity(0.30),
           ),
           child: Icon(
             leadingIcon,
@@ -49,7 +49,7 @@ class Profile extends StatelessWidget {
             ),
           ),
           Positioned(
-              left: 190,
+              left: 210,
               bottom: -10,
               child: TextButton(
                 onPressed: () {},
@@ -85,8 +85,7 @@ class Profile extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              height: 30),
+            SizedBox(height: 30),
             _stackInformationHolder,
             SizedBox(height: 6),
             Text("Seaph Abdulkdir Mohamed",
@@ -114,7 +113,9 @@ class Profile extends StatelessWidget {
                     Divider(height: 3, color: Colors.grey.withOpacity(0.5)),
                     _buildListTile(title: "Help", leadingIcon: Icons.help),
                     _buildListTile(
-                        title: "Logout", leadingIcon: Icons.login_outlined),
+                      title: "Logout",
+                      leadingIcon: Icons.login_outlined,
+                    ),
                   ],
                 ),
               ),

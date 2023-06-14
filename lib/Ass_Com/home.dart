@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:subac_app/Pages/compelete_task.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 import '../Dashboard/new_Ass_Com.dart';
-import 'new_assemblu.dart';
+import '../Pages/new_assemblu.dart';
 
 class HomeWidget extends StatelessWidget {
   const HomeWidget({super.key});
@@ -13,27 +14,48 @@ class HomeWidget extends StatelessWidget {
     return Card(
       elevation: 0,
       child: ListView(
-        padding: EdgeInsets.only(top: 70, left: 25, right: 25),
+        // padding: EdgeInsets.only(top: 70, left: 25, right: 25),
         children: [
+          Center(
+              child: Padding(
+            padding: const EdgeInsets.only(top: 18.0),
+            child: Text(
+              "DashBoard",
+              style: GoogleFonts.rosario(
+                fontSize: 25,
+              ),
+            ),
+          )),
+          Divider(
+            height: 1,
+            color: Colors.green,
+          ),
+          SizedBox(
+            height: 60,
+          ),
           GestureDetector(
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => NewAssembly()));
             },
-            child: NewAssCom(
-              imagePath: "images/kitab.png",
-              textName: "New Assembly",
+            child: NewAssemplyCompelete(
+                imagePath: "images/kitab.png", cardName: "New Assembly"),
+          ),
+          SizedBox(
+            height: 35,
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CompeleteTask()));
+            },
+            child: NewAssemplyCompelete(
+              imagePath: "images/comp.png",
+              cardName: "Complete",
             ),
           ),
           SizedBox(
-            height: 20,
-          ),
-          NewAssCom(
-            imagePath: "images/comp.png",
-            textName: "Complete",
-          ),
-          SizedBox(
-            height: 20,
+            height: 30,
           ),
           Container(
             height: 260,
