@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../Custom Widgets/container_icon_holder.dart';
+
 class CompeleteTask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -45,35 +47,23 @@ class CompeleteTask extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                height: 30,
-                width: 30,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.red,
-                ),
-                child: Icon(
-                  Icons.pause,
-                  color: Colors.white,
-                ),
-              ),
+            ContainerIconHolder(
+              containerBackground: Colors.red,
+              buttonBackgroundColor: Colors.white,
+              typeIcon: Icons.pause,
+            ),
+              
               SizedBox(width: 50),
-              Container(
-                height: 30,
-                width: 30,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Color.fromARGB(255, 49, 202, 169),
-                ),
-                child: Icon(
-                  Icons.stop,
-                  color: Colors.white,
-                ),
+            ContainerIconHolder(
+              containerBackground: Color.fromARGB(255, 49, 202, 169),
+              buttonBackgroundColor: Colors.white,
+              typeIcon: Icons.stop,
+            ),
+          ]
               ),
             ],
           ),
-        ],
-      ),
+       
     );
   }
 }

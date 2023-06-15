@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 
 // my imports
-import 'package:subac_app/Screens_or_pages/start_page.dart';
+import 'package:subac_app/Screens_or_pages/starting_page.dart';
 
 void main() =>
   runApp(MaterialApp(
