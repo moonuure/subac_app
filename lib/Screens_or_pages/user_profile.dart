@@ -84,8 +84,7 @@ class Profile extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              height: 30),
+            SizedBox(height: 30),
             _stackInformationHolder,
             SizedBox(height: 6),
             Text("Seaph Abdulkdir Mohamed",

@@ -1,44 +1,76 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:subac_app/Pages/compelete_task.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
-import '../Dashboard/new_Ass_Com.dart';
-import '../Pages/new_assemblu.dart';
+// custom imports
+import '../Screens_or_pages/compelete_task.dart';
+import '../Screens_or_pages/new_assembly_screen.dart';
 
 class HomeWidget extends StatelessWidget {
   const HomeWidget({super.key});
+
+/*
+* this is builder function that retunrs card desing with dynamic 
+* parameter for image and title
+*/
+  Widget _buildCard(
+      {required String imageUrl,
+      required String title,
+      required bool isAssemplyPage,
+      required BuildContext context}) {
+    return GestureDetector(
+      onTap: () =>
+          _goToSelectPage(isAssemply: isAssemplyPage, context: context),
+      child: SizedBox(
+        width: 300,
+        child: Card(
+          elevation: 0,
+          color: Colors.grey.shade300,
+          child: Column(
+            children: [
+              Padding(padding: EdgeInsets.only(top: 10.0)),
+              Image(image: AssetImage(imageUrl), height: 50),
+              SizedBox(height: 10),
+              Text(title, style: GoogleFonts.rosario(fontSize: 25)),
+              SizedBox(height: 10)
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  _goToSelectPage({required bool isAssemply, required BuildContext context}) {
+    if (isAssemply)
+      return Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+        return NewAssemblyScreen();
+      }));
+    else
+      return Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+        return CompeleteTask();
+      }));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 0,
-      child: ListView(
-        padding: EdgeInsets.only(top: 70, left: 25, right: 25),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => NewAssembly()));
-            },
-            child: NewAssemplyCompelete(imagePath: "images/kitab.png"
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => CompeleteTask()));
-            },
-            child: NewAssemplyCompelete(
-              imagePath: "images/comp.png",
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
+          SizedBox(height: 20),
+          _buildCard(
+              context: context,
+              imageUrl: "images/kitab.png",
+              title: "New Assembly",
+              isAssemplyPage: true),
+          SizedBox(height: 20),
+          _buildCard(
+              context: context,
+              imageUrl: "images/comp.png",
+              title: "Compelete",
+              isAssemplyPage: false),
+          SizedBox(height: 20),
           Container(
             height: 260,
             child: SfRadialGauge(
