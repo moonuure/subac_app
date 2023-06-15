@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 import '../Ass_Com/home.dart';
-import '../Pages/Profile.dart';
+import '../Screens_or_pages/Profile.dart';
 
 
 class DashBoard extends StatefulWidget {

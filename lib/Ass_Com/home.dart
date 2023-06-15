@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:subac_app/Pages/compelete_task.dart';
+import 'package:subac_app/Screens_or_pages/compelete_task.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 import '../Dashboard/new_Ass_Com.dart';
-import '../Pages/new_assemblu.dart';
+import '../Screens_or_pages/new_assemblu.dart';
 
 class HomeWidget extends StatelessWidget {
   const HomeWidget({super.key});
