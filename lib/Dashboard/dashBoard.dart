@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
-import '../Ass_Com/home.dart';
-import '../Pages/Profile.dart';
+import '../Custom Widgets/home.dart';
+import '../Screens_or_pages/user_profile.dart';
 
 class DashBoard extends StatefulWidget {
   @override

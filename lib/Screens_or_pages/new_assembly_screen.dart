@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
-class NewAssembly extends StatefulWidget {
-  NewAssembly({super.key});
+import '../Custom Widgets/container_icon_holder.dart';
 
+class NewAssemblyScreen extends StatefulWidget {
   @override
-  State<NewAssembly> createState() => _NewAssemblyState();
+  State<NewAssemblyScreen> createState() => _NewAssemblyState();
 }
 
-class _NewAssemblyState extends State<NewAssembly> {
+class _NewAssemblyState extends State<NewAssemblyScreen> {
   final List<String> listItems = ["Surah", "Hizb", "Juz"];
   String _selectedMenuItemValue = "Surah";
   int _selectedRadioButton = 0;
@@ -41,16 +41,15 @@ class _NewAssemblyState extends State<NewAssembly> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        leading: BackButton(color: Color.fromARGB(255, 49, 202, 169)),
-        backgroundColor: Colors.white,
-        elevation: 2.0,
-        title: Text(
-          "New Assembly",
-          style: GoogleFonts.rosario(
-              fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
-        ),
-      ),
+          centerTitle: true,
+          leading: BackButton(color: Color.fromARGB(255, 49, 202, 169)),
+          backgroundColor: Colors.white,
+          elevation: 2.0,
+          title: Text(
+            "New Assembly",
+            style: GoogleFonts.rosario(
+                fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
+          )),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.only(top: 50),
@@ -97,7 +96,6 @@ class _NewAssemblyState extends State<NewAssembly> {
                   setState(() {
                     _selectedMenuItemValue = ValueOfTabbedMenuItem!;
                   });
-                  
                 },
                 value: _selectedMenuItemValue,
               ),
@@ -190,41 +188,20 @@ class _NewAssemblyState extends State<NewAssembly> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    height: 30,
-                    width: 30,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.red,
-                    ),
-                    child: Icon(
-                      Icons.pause,
-                      color: Colors.white,
-                    ),
+                  ContainerIconHolder(
+                    containerBackground: Colors.red,
+                    buttonBackgroundColor: Colors.white,
+                    typeIcon: Icons.pause,
                   ),
-                  Container(
-                    height: 30,
-                    width: 30,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Color.fromARGB(255, 49, 202, 169),
-                    ),
-                    child: Icon(
-                      Icons.stop,
-                      color: Colors.white,
-                    ),
+                  ContainerIconHolder(
+                    containerBackground: Color.fromARGB(255, 49, 202, 169),
+                    buttonBackgroundColor: Colors.white,
+                    typeIcon: Icons.stop,
                   ),
-                  Container(
-                    height: 30,
-                    width: 30,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.yellow,
-                    ),
-                    child: Icon(
-                      Icons.check,
-                      color: Colors.white,
-                    ),
+                  ContainerIconHolder(
+                    containerBackground: Colors.yellow,
+                    buttonBackgroundColor: Colors.white,
+                    typeIcon: Icons.check,
                   ),
                 ],
               )

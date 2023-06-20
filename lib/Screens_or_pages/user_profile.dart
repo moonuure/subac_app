@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../Pages/profile_settings.dart';
+
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
