@@ -22,7 +22,7 @@ class HomeWidget extends StatelessWidget {
       onTap: () =>
           _goToSelectPage(isAssemply: isAssemplyPage, context: context),
       child: SizedBox(
-        width: 300,
+        width: 350,
         child: Card(
           elevation: 0,
           color: Colors.grey.shade300,
@@ -64,7 +64,7 @@ class HomeWidget extends StatelessWidget {
               imageUrl: "images/kitab.png",
               title: "New Assembly",
               isAssemplyPage: true),
-          SizedBox(height: 20),
+          const SizedBox(height: 35),
           _buildCard(
               context: context,
               imageUrl: "images/comp.png",

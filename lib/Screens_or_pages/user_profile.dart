@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../Custom Widgets/custom_drawer.dart';
+
 class Profile extends StatefulWidget {
   @override
   State<Profile> createState() => _ProfileState();
@@ -10,8 +12,6 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
 // dyanmic listiel for passing tpe of icon and title you want
-  
-  
 
   Widget _buildListTile(
       {required String title, required IconData leadingIcon}) {
@@ -23,7 +23,7 @@ class _ProfileState extends State<Profile> {
           width: 40,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: Colors.grey.withOpacity(0.5),
+            color: Colors.grey.withOpacity(0.30),
           ),
           child: Icon(
             leadingIcon,
@@ -42,16 +42,15 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-
-
   // this getter returns stack widget and thier ifnormation only
   Widget get _stackInformationHolder => Stack(
         children: [
           Center(
             child: SizedBox(
               height: 100,
-              width: 120,
+              width: 100,
               child: ClipRRect(
+                  clipBehavior: Clip.hardEdge,
                   borderRadius: BorderRadius.circular(100),
                   child: FutureBuilder(
                       future: FirebaseFirestore.instance
@@ -76,7 +75,7 @@ class _ProfileState extends State<Profile> {
             ),
           ),
           Positioned(
-              left: 190,
+              left: 210,
               bottom: -10,
               child: TextButton(
                 onPressed: () {},
@@ -99,19 +98,9 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-
-    return Scaffold(
-      backgroundColor: Color.fromARGB(255, 49, 202, 169),
-      appBar: AppBar(
-        shadowColor: Colors.transparent,
-        backgroundColor: Color.fromARGB(255, 49, 202, 169),
-        centerTitle: true,
-        title: Text(
-          "Profile",
-          style: GoogleFonts.rosario(fontSize: 25, color: Colors.white),
-        ),
-      ),
-      body: SingleChildScrollView(
+    return Container(
+      color: Color.fromARGB(255, 49, 202, 169),
+      child: SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(height: 30),
@@ -141,7 +130,7 @@ class _ProfileState extends State<Profile> {
             const SizedBox(height: 35),
             SizedBox(
               height: 600,
-              width: 600,
+              width: 620,
               child: Card(
                 color: Colors.white,
                 shape: RoundedRectangleBorder(
@@ -160,7 +149,9 @@ class _ProfileState extends State<Profile> {
                     Divider(height: 3, color: Colors.grey.withOpacity(0.5)),
                     _buildListTile(title: "Help", leadingIcon: Icons.help),
                     _buildListTile(
-                        title: "Logout", leadingIcon: Icons.login_outlined),
+                      title: "Logout",
+                      leadingIcon: Icons.login_outlined,
+                    ),
                   ],
                 ),
               ),

@@ -156,9 +156,10 @@ class _RegisterLoginScreenState extends State<RegisterLoginScreen> {
         });
       }
 
-      setState(() {
-        _isAuthenticating = false;
-      });
+      if (mounted)
+        setState(() {
+          _isAuthenticating = false;
+        });
     }
   }
 

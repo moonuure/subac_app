@@ -10,10 +10,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  return runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: QuranApp(),
-  ));
+  return runApp(
+    QuranApp(),
+  );
 }
 
 class QuranApp extends StatelessWidget {
@@ -22,16 +21,18 @@ class QuranApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      
+        debugShowCheckedModeBanner: false,
         home: StreamBuilder(
-      stream: FirebaseAuth.instance.authStateChanges(),
-      builder: (_, snapshots) {
-        if (snapshots.connectionState == ConnectionState.waiting)
-          return CircularProgressIndicator(
-              color: Color.fromARGB(255, 49, 202, 169));
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (_, snapshots) {
+            if (snapshots.connectionState == ConnectionState.waiting)
+              return CircularProgressIndicator(
+                  color: Color.fromARGB(255, 49, 202, 169));
 
-        if (snapshots.hasData) return DashBoard();
-        return RegisterLoginScreen();
-      },
-    ));
+            if (snapshots.hasData) return DashBoard();
+            return RegisterLoginScreen();
+          },
+        ));
   }
 }
