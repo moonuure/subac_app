@@ -1,10 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Profile extends StatelessWidget {
-  const Profile({super.key});
+class Profile extends StatefulWidget {
+  @override
+  State<Profile> createState() => _ProfileState();
+}
 
+class _ProfileState extends State<Profile> {
 // dyanmic listiel for passing tpe of icon and title you want
+  
+  
+
   Widget _buildListTile(
       {required String title, required IconData leadingIcon}) {
     return Padding(
@@ -34,6 +42,8 @@ class Profile extends StatelessWidget {
     );
   }
 
+
+
   // this getter returns stack widget and thier ifnormation only
   Widget get _stackInformationHolder => Stack(
         children: [
@@ -42,9 +52,27 @@ class Profile extends StatelessWidget {
               height: 100,
               width: 120,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(100),
-                child: Image(image: AssetImage("images/prof.png")),
-              ),
+                  borderRadius: BorderRadius.circular(100),
+                  child: FutureBuilder(
+                      future: FirebaseFirestore.instance
+                          .collection("userinformation")
+                          .where("userid",
+                              isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                          .get(),
+                      builder: (_, getData) {
+                        if (getData.connectionState == ConnectionState.waiting)
+                          return Center(
+                            child: SizedBox(
+                              height: 40,
+                              width: 40,
+                              child: CircularProgressIndicator(
+                                  color: Color.fromARGB(255, 214, 215, 215)),
+                            ),
+                          );
+
+                        return Image.network(
+                            getData.data!.docs[0].data()["profile_url"]);
+                      })),
             ),
           ),
           Positioned(
@@ -68,8 +96,10 @@ class Profile extends StatelessWidget {
               ))
         ],
       );
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 49, 202, 169),
       appBar: AppBar(
@@ -87,8 +117,26 @@ class Profile extends StatelessWidget {
             SizedBox(height: 30),
             _stackInformationHolder,
             SizedBox(height: 6),
-            Text("Seaph Abdulkdir Mohamed",
-                style: GoogleFonts.rosario(color: Colors.white, fontSize: 24)),
+            FutureBuilder(
+                future: FirebaseFirestore.instance
+                    .collection("userinformation")
+                    .where("userid",
+                        isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                    .get(),
+                builder: (_, getData) {
+                  if (getData.connectionState == ConnectionState.waiting)
+                    return Center(
+                      child: CircularProgressIndicator(
+                          color: Color.fromARGB(255, 214, 215, 215)),
+                    );
+
+                  return Text(getData.data!.docs[0].data()["name"],
+                      style: GoogleFonts.firaCode().copyWith(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ));
+                  ;
+                }),
             Text("Mr IT", style: GoogleFonts.rosario(color: Colors.white70)),
             const SizedBox(height: 35),
             SizedBox(

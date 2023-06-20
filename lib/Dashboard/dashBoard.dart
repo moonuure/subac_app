@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
+import '../Custom Widgets/custom_drawer.dart';
 import '../Custom Widgets/home.dart';
 import '../Screens_or_pages/user_profile.dart';
 
@@ -27,6 +28,10 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 49, 202, 169),
+        ),
+        drawer: CustomDrawer(),
         body: _pages[_selectedPage],
         bottomNavigationBar: CurvedNavigationBar(
             key: _bottomNavigationKey,
