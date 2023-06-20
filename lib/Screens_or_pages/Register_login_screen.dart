@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-
-// custom imports
-import '../Dashboard/dashBoard.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RegisterLoginScreen extends StatefulWidget {
   @override
@@ -11,6 +10,16 @@ class RegisterLoginScreen extends StatefulWidget {
 }
 
 class _RegisterLoginScreenState extends State<RegisterLoginScreen> {
+  /*
+ declaring gloobal fireabse objects
+*/
+  final _fireabaseAuth = FirebaseAuth.instance;
+  final _firebaseFireStorage = FirebaseFirestore.instance;
+
+  // link of default iamge url of the person and he can update later in the profile section
+  final String profile_url =
+      "https://tse4.mm.bing.net/th?id=OIP.jixXH_Els1MXBRmKFdMQPAHaHa&pid=Api&P=0&h=180";
+
   /*
   * variables that store us information of textfields
   * each one stores specific TextField as per name
@@ -83,6 +92,9 @@ class _RegisterLoginScreenState extends State<RegisterLoginScreen> {
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       child: IntlPhoneField(
         obscureText: false,
+        validator: (valueToBeValidate) =>
+            validateValue(valueToBeValidate.toString()),
+        onSaved: (valueToBeSave) => saveValue(valueToBeSave.toString()),
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
@@ -119,15 +131,35 @@ class _RegisterLoginScreenState extends State<RegisterLoginScreen> {
         FocusScope.of(context)
             .unfocus(); // this closes if there is open keyboard
       });
-      await Future.delayed(
-          Duration(seconds: 3),
-          () => Navigator.of(context)
-                  .pushReplacement(MaterialPageRoute(builder: (_) {
-                return DashBoard();
-              })));
-      setState(() {
-        _isAuthenticating = false;
-      });
+      // is login case we validate informaiton
+      if (_isLogin) {
+        try {
+          await _fireabaseAuth.signInWithEmailAndPassword(
+              email: _emailController, password: _passwordController);
+        } catch (exception) {
+          ScaffoldMessenger.of(context).clearSnackBars();
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(exception.toString())));
+        }
+      } else {
+        final _userCredential =
+            await _fireabaseAuth.createUserWithEmailAndPassword(
+                email: _emailController, password: _passwordController);
+
+        await _firebaseFireStorage.collection("userinformation").add({
+          "email": _emailController,
+          "password": _passwordController,
+          "phono": _phonoController,
+          "userid": _userCredential.user!.uid,
+          "name": _nameController,
+          "profile_url": profile_url
+        });
+      }
+
+      if (mounted)
+        setState(() {
+          _isAuthenticating = false;
+        });
     }
   }
 

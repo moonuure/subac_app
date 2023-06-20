@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "800823761065",
+    "project_id": "subac-app",
+    "storage_bucket": "subac-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800823761065:android:a8b4787fe822cd743c71b8",
+        "android_client_info": {
+          "package_name": "com.example.subac_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800823761065-f2vkki38o1oeuvb0vftig9r5hrm2na2a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALc3pbayiQipwF_Imc1L7BIvNEgz-4v8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800823761065-f2vkki38o1oeuvb0vftig9r5hrm2na2a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
